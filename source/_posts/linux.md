@@ -1,5 +1,5 @@
 ---
-title: linux 性能调优
+title: linux 常用命令
 ---
 
 - 总结、收集 linux 常用命令、系统应用调优相关的技巧
