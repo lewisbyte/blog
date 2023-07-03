@@ -1,7 +1,8 @@
-# java-handle-leak-demo(java句柄泄露样例)
+---
+title: 句柄泄露
+---
 
 - 本仓库为样例仓库吗，通过java来复现linux里的句柄泄露问题
-
 
 - 工程使用说明：
 - jdk-8
@@ -36,4 +37,5 @@
 - 调试native方法：java.io.FileInputStream.close0
 
 ref
-- (如何查找 jdk 中的 native 实现)[https://gorden5566.com/post/1027.html]
+
+- [如何查找 jdk 中的 native 实现](https://gorden5566.com/post/1027.html)
