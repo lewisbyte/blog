@@ -1,26 +1,31 @@
 ---
-title: linux 常用命令
+title: linux 实用命令
 ---
 
-- 总结、收集 linux 常用命令、系统应用调优相关的技巧
+- 总结、收集 linux 实用命令、系统应用调优相关的技巧
 - 本文基于Ubuntu-22.04发行版本
 
 ## 目录
 
-- [系统监控-top](#top)
-- [系统监控-watch](#watch)
-- [系统监控-pidstat](#pidstat)
-- [系统监控-pidstat](#pidstat)
-- [系统监控-dstat](#dstat)
-- [系统监控-lsof](#lsof)
-- [系统监控-strace](#strace)
-- [系统监控-perf](#perf)
-- [系统监控-pstree](#pstree)
+- [系统信息-ps](#ps)
+- [系统信息-top](#top)
+- [系统信息-watch](#watch)
+- [系统信息-pidstat](#pidstat)
+- [系统信息-pidstat](#pidstat)
+- [系统信息-dstat](#dstat)
+- [系统信息-lsof](#lsof)
+- [系统信息-strace](#strace)
+- [系统信息-perf](#perf)
+- [系统信息-pstree](#pstree)
 - [系统测试-stress](#stress)
 - [系统测试-iperf](#iperf)
 - [内核信息-procfs](#procfs)
 
-## 系统监控
+## 系统信息
+
+### ps
+
+- [简介]
 
 ### top
 
@@ -61,13 +66,13 @@ title: linux 常用命令
 
 - [简介] 跟踪进程系统调用的工具
 - [安装] `apt install strace`
-- [使用样例]：运行 strace 命令，并用 -p 参数指定 PID 号 `strace -p 6082`
+- [样例]: 运行 strace 命令，并用 -p 参数指定 PID 号 `strace -p 6082`
 
 ### perf
 
 - [简介]
 - [安装]
-- [使用样例]：采样操作系统函数调用 `perf record -g`，获取调用报告 `perf report`
+- [样例]: 采样操作系统函数调用 `perf record -g`，获取调用报告 `perf report`
 
 ### pstree
 
@@ -112,7 +117,7 @@ title: linux 常用命令
   - /proc/diskstats, 给出了每一块逻辑磁盘设备的一些信息
   - /proc/filesystems, 当前时刻内核支持的文件系统的列表
   - /proc/interrupts, /proc/iomem, /proc/ioports, /proc/irq, 设备的一些与中断、内存访问有  - 关的信息
-  - /proc/kmsg, 用于跟踪读取内核消息 [8]
+  - /proc/kmsg, 用于跟踪读取内核消息 
   - /proc/meminfo, 包含内核管理内存的一些汇总信息
   - /proc/modules, 是/proc最重要的文件之一, 包含了当前加载的内核模块列表
   - /proc/mounts, 包含了当前安装设备及安装点的符号链接
