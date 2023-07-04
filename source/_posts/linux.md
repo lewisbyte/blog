@@ -3,14 +3,24 @@ title: linux 常用命令
 ---
 
 - 总结、收集 linux 常用命令、系统应用调优相关的技巧
+- 本文基于Ubuntu-22.04发行版本
 
 ## 目录
 
-- [基础命令-top](#top)
-- [基础命令-watch](#watch)
+- [系统监控-top](#top)
+- [系统监控-watch](#watch)
+- [系统监控-pidstat](#pidstat)
+- [系统监控-pidstat](#pidstat)
+- [系统监控-dstat](#dstat)
+- [系统监控-lsof](#lsof)
+- [系统监控-strace](#strace)
+- [系统监控-perf](#perf)
+- [系统监控-pstree](#pstree)
+- [系统测试-stress](#stress)
+- [系统测试-iperf](#iperf)
 - [内核信息-procfs](#procfs)
 
-## 基础命令
+## 系统监控
 
 ### top
 
@@ -21,7 +31,7 @@ title: linux 常用命令
 - id: 空闲率
 - Mem: 物理内存使用量
 - Swap: 虚拟内存分区使用量
-- 进程关键指标：S 列（也就是 Status 列）含义
+- 进程关键指标: S 列（也就是 Status 列）含义
   - R 是 Running 或 Runnable 的缩写，表示进程在 CPU 的就绪队列中，正在运行或者正在等待运行。
   - D 是 Disk Sleep 的缩写，也就是不可中断状态睡眠（Uninterruptible Sleep），一般表示进程正在跟硬件交互，并且交互过程不允许被其他进程或中断打断。
   - Z 是 Zombie 的缩写，如果你玩过“植物大战僵尸”这款游戏，应该知道它的意思。它表示僵尸进程，也就是 进程实际上已经结束了，但是父进程还没有回收它的资源（比如进程的描述符、PID 等）。
@@ -31,6 +41,48 @@ title: linux 常用命令
 
 - [简介]: Linux中的watch 命令提供了一种方式处理重复的任务。默认watch会每2秒重复执行命令。你一定也想到了,watch是一个很好的观察log文件的工具。下面是一个例子。
 - 例如执行命令` watch -n 1 -d ps ` 每隔一秒高亮显示进程信息
+
+### pidstat
+
+- [简介]:
+- 样例: 如监控进程pid`4344`]信息: `pidstat -d -p 4344 1 3`，-d 展示 I/O 统计数据，-p 指定进程号，间隔 1 秒输出 3 组数据
+- 参数含义: kB_rd 表示每秒读的 KB 数， kB_wr 表示每秒写的 KB 数，iodelay 表示 I/O 的延迟（单位是时钟周期）
+
+### dstat
+
+- [简介] dstat 是一个新的性能工具，它吸收了 vmstat、iostat、ifstat 等几种工具的优点，可以同时观察系统的 CPU、磁盘 I/O、网络以及内存使用情况。
+- 安装执行命令 `apt install dstat -y`
+
+### lsof
+
+- [简介]
+
+### strace
+
+- [简介] 跟踪进程系统调用的工具
+- [安装] `apt install strace`
+- [使用样例]：运行 strace 命令，并用 -p 参数指定 PID 号 `strace -p 6082`
+
+### perf
+
+- [简介]
+- [安装]
+- [使用样例]：采样操作系统函数调用 `perf record -g`，获取调用报告 `perf report`
+
+### pstree
+
+- [简介]
+- [样例] `pstree -aps 3084`; a 表示输出命令行选项 ; p 表 PID; s 表示指定进程的父进程
+
+## 系统测试
+
+### stress
+
+- [简介] cpu、io 压测测试
+
+### iperf
+
+- [简介] 网络性能测试
 
 ## 内核信息
 
@@ -76,4 +128,3 @@ title: linux 常用命令
   - /proc/uptime, 内核启动后经过的秒数与idle模式的秒数
   - /proc/version, 包含Linux内核版本，发布号（distribution number）, 编译内核的gcc版本，其他  - 相关的版本
   - 其他文件依赖于不同的硬件，模块配置与内核改变
-
