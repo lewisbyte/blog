@@ -1,13 +1,13 @@
 #!/bin/bash
-echo 'git add -A;'
+echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git add -A;>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 git add -A;
-echo "git commit -m 'update';"
+echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<git commit -m 'update';;>>>>>>>>>>>>>>>>>>>>>>>>>>>'"
 git commit -m 'update';
-echo 'git push origin main;'
+echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git push origin main;;>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 git push origin main;
-echo 'hexo clean;'
+echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<hexo clean;;>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 hexo clean;
-echo 'hexo generate;'
+echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<hexo generate;;>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 hexo generate;
-echo 'hexo deploy;'
+echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<hexo deploy;;>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 hexo deploy;
