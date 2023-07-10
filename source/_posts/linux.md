@@ -12,14 +12,17 @@ title: Linux实用命令
 - [系统信息-top](#top)
 - [系统信息-watch](#watch)
 - [系统信息-pidstat](#pidstat)
-- [系统信息-pidstat](#pidstat)
+- [系统信息-mpstat](#mpstat)
+- [系统信息-vmstat](#vmstat)
 - [系统信息-dstat](#dstat)
 - [系统信息-lsof](#lsof)
 - [系统信息-strace](#strace)
 - [系统信息-perf](#perf)
 - [系统信息-pstree](#pstree)
+- [网络信息-tcpdump](#tcpdump)
 - [系统测试-stress](#stress)
 - [系统测试-iperf](#iperf)
+- [系统测试-sysbench](#sysbench)
 - [内核信息-procfs](#procfs)
 
 ## 系统信息
@@ -59,6 +62,14 @@ title: Linux实用命令
 - [简介] dstat 是一个新的性能工具，它吸收了 vmstat、iostat、ifstat 等几种工具的优点，可以同时观察系统的 CPU、磁盘 I/O、网络以及内存使用情况。
 - 安装执行命令 `apt install dstat -y`
 
+### mpstat
+
+- [简介]
+
+### vmstat
+
+- [简介]
+
 ### lsof
 
 - [简介]
@@ -80,6 +91,12 @@ title: Linux实用命令
 - [简介]
 - [样例] `pstree -aps 3084`; a 表示输出命令行选项 ; p 表 PID; s 表示指定进程的父进程
 
+## 网络信息
+
+### tcpdump
+
+- [简介]
+
 ## 系统测试
 
 ### stress
@@ -89,6 +106,10 @@ title: Linux实用命令
 ### iperf
 
 - [简介] 网络性能测试
+
+### sysbench
+
+- [简介]
 
 ## 内核信息
 
@@ -113,6 +134,7 @@ title: Linux实用命令
   - /proc/PID/task, 一个目录包含了硬链接到该进程启动的任何任务
 
 - 系统相关
+  - /proc/softirqs 系统软中断
   - /proc/crypto, 可利用的加密模块列表
   - /proc/devices, 字符设备与块设备列表，按照设备ID排序，但给出了/dev名字的主要部分
   - /proc/diskstats, 给出了每一块逻辑磁盘设备的一些信息
