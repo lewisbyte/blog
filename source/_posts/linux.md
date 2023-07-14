@@ -159,4 +159,5 @@ title: Linux实用命令
   - /proc/tty, 包含当前终端信息; /proc/tty/driver是可利用的tty类型列表，其中的每一个是该类型的  - 可用设备列表。
   - /proc/uptime, 内核启动后经过的秒数与idle模式的秒数
   - /proc/version, 包含Linux内核版本，发布号（distribution number）, 编译内核的gcc版本，其他  - 相关的版本
+  - /proc/{pid}/smaps，读取某个pid进程对应的虚拟内存区间到信息
   - 其他文件依赖于不同的硬件，模块配置与内核改变
