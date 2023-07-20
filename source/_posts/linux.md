@@ -5,7 +5,6 @@ title: Linux实用命令
 - 总结、收集 Linux 实用命令、系统应用调优相关的技巧
 - 本文基于 Ubuntu-22.04、Centos-7 版本
 
-
 ## 目录
 
 - [系统信息-ps](#ps)
@@ -15,6 +14,8 @@ title: Linux实用命令
 - [系统信息-mpstat](#mpstat)
 - [系统信息-vmstat](#vmstat)
 - [系统信息-dstat](#dstat)
+- [系统信息-cachestat](#cachestat)
+- [系统信息-cachetop](#cachetop)
 - [系统信息-lsof](#lsof)
 - [系统信息-strace](#strace)
 - [系统信息-perf](#perf)
@@ -73,6 +74,23 @@ title: Linux实用命令
 ### vmstat
 
 - [简介]
+
+### cachestat
+
+- [简介] 缓存命中率
+- [样例] `cachestat 1 3`
+- [参数含义]
+  - TOTAL ，表示总的 I/O 次数；
+  - MISSES ，表示缓存未命中的次数；
+  - HITS ，表示缓存命中的次数；
+  - DIRTIES， 表示新增到缓存中的脏页数；
+  - BUFFERS_MB 表示 Buffers 的大小，以 MB 为单位；
+  - CACHED_MB 表示 Cache 的大小，以 MB 为单位
+
+### cachetop
+
+- [简介] 缓存命中率：输出跟 top 类似，默认按照缓存的命中次数（HITS）排序，展示了每个进程的缓存命中情况。具体到每一个指标，这里的 HITS、MISSES 和 DIRTIES ，跟 cachestat 里的含义一样，分别代表间隔时间内的缓存命中次数、未命中次数以及新增到缓存中的脏页数。
+- [样例] `cachetop`
 
 ### lsof
 
