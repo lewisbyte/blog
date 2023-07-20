@@ -24,6 +24,7 @@ title: Linux实用命令
 - [系统测试-stress](#stress)
 - [系统测试-iperf](#iperf)
 - [系统测试-sysbench](#sysbench)
+- [系统测试-dd](#dd)
 - [内核信息-procfs](#procfs)
 
 ## 系统信息
@@ -98,7 +99,7 @@ title: Linux实用命令
 
 ### strace
 
-- [简介] 跟踪进程系统调用的工具
+- [简介] 跟进程系统调用的工具,观察对应pid进程的系统调用
 - [安装] `apt install strace`
 - [样例]: 运行 strace 命令，并用 -p 参数指定 PID 号 `strace -p 6082`
 
@@ -132,6 +133,11 @@ title: Linux实用命令
 ### sysbench
 
 - [简介]
+
+### dd
+
+- [简介]Linux dd 命令用于读取、转换并输出数据。dd 可从标准输入或文件中读取数据，根据指定的格式来转换数据，再输出到文件、设备或标准输出。
+- [样例] 生成一个 512MB 的临时文件 `dd if=/dev/sda1 of=file bs=1M count=512`
 
 ## 内核信息
 
