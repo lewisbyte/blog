@@ -143,7 +143,9 @@ title: Linux实用命令
 ### dd
 
 - [简介]Linux dd 命令用于读取、转换并输出数据。dd 可从标准输入或文件中读取数据，根据指定的格式来转换数据，再输出到文件、设备或标准输出。
-- [样例] 生成一个 512MB 的临时文件 `dd if=/dev/sda1 of=file bs=1M count=512`
+- [样例] 生成一个 512MB 的临时文件 `dd if=/dev/sda1 of=file bs=1M count=512`，
+- [样例] 写入指定目录文件夹路径文件 `dd if=/dev/zero of=/Users/lewis/fx/test.file  bs=1M  count=10000K iflag=direct`
+
 
 ## 内核信息
 
