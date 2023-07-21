@@ -20,6 +20,7 @@ title: Linux实用命令
 - [系统信息-strace](#strace)
 - [系统信息-perf](#perf)
 - [系统信息-pstree](#pstree)
+- [系统信息-valgrind](#valgrind)
 - [网络信息-tcpdump](#tcpdump)
 - [系统测试-stress](#stress)
 - [系统测试-iperf](#iperf)
@@ -113,6 +114,10 @@ title: Linux实用命令
 
 - [简介]
 - [样例] `pstree -aps 3084`; a 表示输出命令行选项 ; p 表 PID; s 表示指定进程的父进程
+
+### valgrind
+
+- [简介] 内存泄露检测工具，应用最广泛的工具，一个重量级的内存检查器，能够发现开发中绝大多数内存错误使用情况
 
 ## 网络信息
 
