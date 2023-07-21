@@ -194,3 +194,4 @@ title: Linux实用命令
   - /proc/version, 包含Linux内核版本，发布号（distribution number）, 编译内核的gcc版本，其他  - 相关的版本
   - /proc/{pid}/smaps，读取某个pid进程对应的虚拟内存区间到信息
   - 其他文件依赖于不同的硬件，模块配置与内核改变
+  -  /proc/sys/vm/swappiness，Linux 提供了一个 /proc/sys/vm/swappiness 选项，用来调整使用 Swap 的积极程度。swappiness 的范围是 0-100，数值越大，越积极使用 Swap，也就是更倾向于回收匿名页；数值越小，越消极使用 Swap，也就是更倾向于回收文件页。
