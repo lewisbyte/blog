@@ -5,6 +5,11 @@ title: Linux实用命令
 - 总结、收集 Linux 实用命令、系统应用调优相关的技巧
 - 本文基于 Ubuntu-22.04、Centos-7 版本
 
+## 场景
+
+- [内存问题分析](#内存问题分析)
+- [CPU问题分析](#CPU问题分析)
+
 ## 目录
 
 - [系统信息-ps](#ps)
@@ -27,6 +32,14 @@ title: Linux实用命令
 - [系统测试-sysbench](#sysbench)
 - [系统测试-dd](#dd)
 - [内核信息-procfs](#procfs)
+
+### CPU问题分析
+
+![CPU问题分析](image/002-cpu.png)
+
+### 内存问题分析
+
+![内存问题分析](image/001-mem.png)
 
 ## 系统信息
 
@@ -146,7 +159,6 @@ title: Linux实用命令
 - [使用场景]适用于测试磁盘的顺序读写场景
 - [样例] 生成一个 512MB 的临时文件 `dd if=/dev/sda1 of=file bs=1M count=512`，
 - [样例] 写入指定目录文件夹路径文件 `dd if=/dev/zero of=/Users/lewis/fx/test.file  bs=1M  count=10000K iflag=direct`
-
 
 ## 内核信息
 
