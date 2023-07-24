@@ -12,7 +12,6 @@ title: Linux实用命令
 
 ## 目录
 
-- [系统信息-ps](#ps)
 - [系统信息-top](#top)
 - [系统信息-watch](#watch)
 - [系统信息-pidstat](#pidstat)
@@ -21,7 +20,6 @@ title: Linux实用命令
 - [系统信息-dstat](#dstat)
 - [系统信息-cachestat](#cachestat)
 - [系统信息-cachetop](#cachetop)
-- [系统信息-lsof](#lsof)
 - [系统信息-strace](#strace)
 - [系统信息-perf](#perf)
 - [系统信息-pstree](#pstree)
@@ -42,10 +40,6 @@ title: Linux实用命令
 ![内存问题分析](image/001-mem.png)
 
 ## 系统信息
-
-### ps
-
-- [简介]
 
 ### top
 
@@ -106,10 +100,6 @@ title: Linux实用命令
 
 - [简介] 缓存命中率：输出跟 top 类似，默认按照缓存的命中次数（HITS）排序，展示了每个进程的缓存命中情况。具体到每一个指标，这里的 HITS、MISSES 和 DIRTIES ，跟 cachestat 里的含义一样，分别代表间隔时间内的缓存命中次数、未命中次数以及新增到缓存中的脏页数。
 - [样例] `cachetop`
-
-### lsof
-
-- [简介]
 
 ### strace
 
