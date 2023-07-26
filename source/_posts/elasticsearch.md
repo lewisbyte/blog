@@ -15,7 +15,7 @@ title: elasticsearch源码学习
 - 3. 执行 `./gradlew :run --debug-jvm`，启动调试模式. 
 - 4. debug启动之后，观察日志：`[elasticsearch] Listening for transport dt_socket at address: 8000 `发现debug端口为`8000`. 
 - 5. 添加远程JVM调试，主机填`localhost`,端口配置为`8000`,JDK选择 `5-8`，点击确定启动debug
-- ![CPU问题分析](image/002-cpu.png)
+- ![debug 配置](image/003-debug.png)
 - 6. 可以观察日志，服务已经正常启动 
 ```log
 [elasticsearch] [2023-07-26T16:19:14,233][INFO ][o.e.t.TransportService   ] [node-0] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
