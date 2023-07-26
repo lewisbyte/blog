@@ -20,6 +20,7 @@ title: Linux实用命令
 - [系统信息-dstat](#dstat)
 - [系统信息-cachestat](#cachestat)
 - [系统信息-cachetop](#cachetop)
+- [系统信息-slabtop](#slabtop)
 - [系统信息-strace](#strace)
 - [系统信息-perf](#perf)
 - [系统信息-pstree](#pstree)
@@ -100,6 +101,12 @@ title: Linux实用命令
 
 - [简介] 缓存命中率：输出跟 top 类似，默认按照缓存的命中次数（HITS）排序，展示了每个进程的缓存命中情况。具体到每一个指标，这里的 HITS、MISSES 和 DIRTIES ，跟 cachestat 里的含义一样，分别代表间隔时间内的缓存命中次数、未命中次数以及新增到缓存中的脏页数。
 - [样例] `cachetop`
+
+### slabtop
+
+- [简介] 实时显示内核slab内存缓存信息，使用 slabtop ，来找到占用内存最多的缓存类型。
+- [样例] `slabtop`
+
 
 ### strace
 
