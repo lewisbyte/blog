@@ -1,5 +1,5 @@
 ---
-title: Linux应用性能调优
+title: Linux应用性能调优-LTS
 ---
 
 - 总结、收集 Linux 实用命令、系统应用调优相关的技巧
@@ -18,6 +18,8 @@ title: Linux应用性能调优
 - [系统信息-mpstat](#mpstat)
 - [系统信息-vmstat](#vmstat)
 - [系统信息-dstat](#dstat)
+- [磁盘信息-iostat](#iostat)
+- [磁盘信息-iotop](#iotop)
 - [系统信息-cachestat](#cachestat)
 - [系统信息-cachetop](#cachetop)
 - [系统信息-slabtop](#slabtop)
@@ -26,10 +28,11 @@ title: Linux应用性能调优
 - [系统信息-pstree](#pstree)
 - [系统信息-valgrind](#valgrind)
 - [网络信息-tcpdump](#tcpdump)
-- [系统测试-stress](#stress)
-- [系统测试-iperf](#iperf)
-- [系统测试-sysbench](#sysbench)
-- [系统测试-dd](#dd)
+- [测试-cpu-stress](#stress)
+- [测试-系统-sysbench](#sysbench)
+- [测试-网络-iperf](#iperf)
+- [测试-磁盘-dd](#dd)
+- [测试-磁盘-fio](#fio)
 - [内核信息-procfs](#procfs)
 
 ### CPU问题分析
@@ -76,6 +79,21 @@ title: Linux应用性能调优
 
 - [简介] dstat 是一个新的性能工具，它吸收了 vmstat、iostat、ifstat 等几种工具的优点，可以同时观察系统的 CPU、磁盘 I/O、网络以及内存使用情况。
 - 安装执行命令 `apt install dstat -y`
+
+### iostat
+
+- [简介] iostat 是最常用的磁盘 I/O 性能观测工具，它提供了每个磁盘的使用率、IOPS、吞吐量等各种常见的性能指标，当然，这些指标实际上来自 /proc/diskstats。
+- [样例] `iostat -d -x 1`
+- [参数含义](image/004-iostat.png)
+- %util ，就是我们前面提到的磁盘 I/O 使用率；
+- r/s+ w/s ，就是 IOPS；
+- rkB/s+wkB/s ，就是吞吐量；
+- r_await+w_await ，就是响应时间。
+
+### iotop
+
+- [简介] 一个类似于 top 的工具，你可以按照 I/O 大小对进程排序，然后找到 I/O 较大的那些进程
+- [样例] `iotop`
 
 ### mpstat
 
@@ -148,7 +166,7 @@ title: Linux应用性能调优
 
 ### sysbench
 
-- [简介]
+- [简介] sysbench是跨平台的基准测试工具
 
 ### dd
 
@@ -156,6 +174,10 @@ title: Linux应用性能调优
 - [使用场景]适用于测试磁盘的顺序读写场景
 - [样例] 生成一个 512MB 的临时文件 `dd if=/dev/sda1 of=file bs=1M count=512`，
 - [样例] 写入指定目录文件夹路径文件 `dd if=/dev/zero of=/Users/lewis/fx/test.file  bs=1M  count=10000K iflag=direct`
+
+### fio
+
+- [简介]: 测试磁盘的 IOPS、吞吐量以及响应时间等核心指标
 
 ## 内核信息
 
