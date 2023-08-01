@@ -20,6 +20,7 @@ title: Linux应用性能调优-LTS
 - [系统信息-dstat](#dstat)
 - [磁盘信息-iostat](#iostat)
 - [磁盘信息-iotop](#iotop)
+- [文件信息-lsof](#lsof)
 - [系统信息-cachestat](#cachestat)
 - [系统信息-cachetop](#cachetop)
 - [系统信息-slabtop](#slabtop)
@@ -94,6 +95,12 @@ title: Linux应用性能调优-LTS
 
 - [简介] 一个类似于 top 的工具，你可以按照 I/O 大小对进程排序，然后找到 I/O 较大的那些进程
 - [样例] `iotop`
+
+### lsof
+
+- [简介] 用于查看你进程打开的文件，打开文件的进程，进程打开的端口(TCP、UDP)。 找回/恢复删除的文件
+- [样例] `lsof -p $pid` 查看对应进程关联打开的 网络、文件、设备、socket链接 等
+- [样例] `lsof -i $port` 查看对应端口的占用情况
 
 ### mpstat
 
