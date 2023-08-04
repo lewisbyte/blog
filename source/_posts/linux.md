@@ -44,6 +44,10 @@ title: Linux应用性能调优-LTS
 
 ![内存问题分析](image/001-mem.png)
 
+### 磁盘问题分析
+
+![磁盘问题分析](image/005-disk.png)
+
 ## 系统信息
 
 ### top
