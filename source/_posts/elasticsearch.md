@@ -8,7 +8,8 @@ title: elasticsearch源码学习-LTS
 ## 目录
 
 - [如何调试](#如何调试)
-
+- [ES集群启动步骤](#ES集群启动步骤)
+- [ES节点启动](#ES节点启动)
 ### 如何调试
 - 1. 编译构建elasticsearch工程: `./gradlew assemble`
 - 2. 将工程集成到IDEA: `./gradlew idea`，用IDEA打开elasticsearch工程
@@ -46,5 +47,13 @@ title: elasticsearch源码学习-LTS
   "tagline" : "You Know, for Search"
 }
 ```
+### ES集群启动步骤
+* 1. 选举主节点（过半数为master节点）
+* 2. 选举集群元信息
+* 3. allocation分配数据分片
+* 4. index recovery 索引重启恢复
+* 5. 集群启动
 
+### ES节点启动
 
+* 1. 
