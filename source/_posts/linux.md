@@ -9,44 +9,57 @@ title: Linux应用性能调优-LTS
 
 - [内存问题分析](#内存问题分析)
 - [CPU问题分析](#CPU问题分析)
+- [磁盘问题分析](#磁盘问题分析)
+- [网络问题分析](#网络问题分析)
 
 ## 目录
 
-- [系统信息-top](#top)
-- [系统信息-watch](#watch)
-- [系统信息-pidstat](#pidstat)
-- [系统信息-mpstat](#mpstat)
-- [系统信息-vmstat](#vmstat)
-- [系统信息-dstat](#dstat)
-- [磁盘信息-iostat](#iostat)
-- [磁盘信息-iotop](#iotop)
-- [文件信息-lsof](#lsof)
-- [系统信息-cachestat](#cachestat)
-- [系统信息-cachetop](#cachetop)
-- [系统信息-slabtop](#slabtop)
-- [系统信息-strace](#strace)
-- [系统信息-perf](#perf)
-- [系统信息-pstree](#pstree)
-- [系统信息-valgrind](#valgrind)
-- [网络信息-tcpdump](#tcpdump)
-- [测试-cpu-stress](#stress)
-- [测试-系统-sysbench](#sysbench)
-- [测试-网络-iperf](#iperf)
-- [测试-磁盘-dd](#dd)
-- [测试-磁盘-fio](#fio)
-- [内核信息-procfs](#procfs)
+- [系统信息](#系统信息)
+  - [系统信息-top](#top)
+  - [系统信息-watch](#watch)
+  - [系统信息-pidstat](#pidstat)
+  - [系统信息-mpstat](#mpstat)
+  - [系统信息-vmstat](#vmstat)
+  - [系统信息-dstat](#dstat)
+  - [系统信息-cachestat](#cachestat)
+  - [系统信息-cachetop](#cachetop)
+  - [系统信息-slabtop](#slabtop)
+  - [系统信息-strace](#strace)
+  - [系统信息-perf](#perf)
+  - [系统信息-pstree](#pstree)
+  - [系统信息-valgrind](#valgrind)
+  - [系统信息-procfs](#procfs)
+- [文件磁盘](#文件磁盘)
+  - [磁盘信息-iostat](#iostat)
+  - [磁盘信息-iotop](#iotop)
+  - [文件信息-lsof](#lsof)
+-[系统测试](#系统测试)
+  - [测试-cpu-stress](#stress)
+  - [测试-系统-sysbench](#sysbench)
+  - [测试-磁盘-dd](#dd)
+  - [测试-磁盘-fio](#fio)
+- [网络](#网络)
+  - [网络调试-nslookup](#nslookup)
+  - [网络调试-dig](#dig)
+  - [网络测试-ping](#ping)
+  - [网络测试-iperf](#iperf)
+  - [网络信息-tcpdump](#tcpdump)
 
 ### CPU问题分析
 
-![CPU问题分析](image/002-cpu.png)
+![CPU问题分析图](image/002-cpu.png)
 
 ### 内存问题分析
 
-![内存问题分析](image/001-mem.png)
+![内存问题分析图](image/001-mem.png)
 
 ### 磁盘问题分析
 
-![磁盘问题分析](image/005-disk.png)
+![磁盘问题分析图](image/005-disk.png)
+
+### 网络问题分析
+
+- todo
 
 ## 系统信息
 
@@ -85,6 +98,8 @@ title: Linux应用性能调优-LTS
 - [简介] dstat 是一个新的性能工具，它吸收了 vmstat、iostat、ifstat 等几种工具的优点，可以同时观察系统的 CPU、磁盘 I/O、网络以及内存使用情况。
 - 安装执行命令 `apt install dstat -y`
 
+## 文件磁盘
+
 ### iostat
 
 - [简介] iostat 是最常用的磁盘 I/O 性能观测工具，它提供了每个磁盘的使用率、IOPS、吞吐量等各种常见的性能指标，当然，这些指标实际上来自 /proc/diskstats。
@@ -103,16 +118,16 @@ title: Linux应用性能调优-LTS
 ### lsof
 
 - [简介] 用于查看你进程打开的文件，打开文件的进程，进程打开的端口(TCP、UDP)。 找回/恢复删除的文件
-- [样例] `lsof -p $pid` 查看对应进程关联打开的 网络、文件、设备、socket链接 等
+- [样例] `lsof -p $pid` 查看对应进程关联打开的 网络、文件、设备、socket链接 等。如果要查看某个pid的TCP类型文件，执行`lsof -p $pid | grep TCP` 即可查看到监听的TCP网络及端口相关信息
 - [样例] `lsof -i $port` 查看对应端口的占用情况
 
 ### mpstat
 
-- [简介]
+- [简介] todo
 
 ### vmstat
 
-- [简介]
+- [简介] todo
 
 ### cachestat
 
@@ -136,7 +151,6 @@ title: Linux应用性能调优-LTS
 - [简介] 实时显示内核slab内存缓存信息，使用 slabtop ，来找到占用内存最多的缓存类型。内核的模块在分配资源的时候，为了提高效率和资源的利用率，都是透过slab来分配的。通过slab的信息，再配合源码能粗粗了解系统的运行情况，比如说什么资源有没有不正常的多，或者什么资源有没有泄漏。linux系统透过/proc/slabinfo来向用户暴露slab的使用情况。Linux 所使用的 slab 分配器的基础是 Jeff Bonwick 为 SunOS 操作系统首次引入的一种算法。Jeff 的分配器是围绕对象缓存进行的。在内核中，会为有限的对象集（例如文件描述符和其他常见结构）分配大量内存。Jeff 发现对内核中普通对象进行初始化所需的时间超过了对其进行分配和释放所需的时间。因此他的结论是不应该将内存释放回一个全局的内存池，而是将内存保持为针对特定目而初始化的状态。Linux slab 分配器使用了这种思想和其他一些思想来构建一个在空间和时间上都具有高效性的内存分配器。保存着监视系统中所有活动的 slab 缓存的信息的文件为/proc/slabinfo。
 - [样例] `slabtop`
 
-
 ### strace
 
 - [简介] 跟进程系统调用的工具,观察对应pid进程的系统调用
@@ -145,8 +159,8 @@ title: Linux应用性能调优-LTS
 
 ### perf
 
-- [简介]
-- [安装]
+- [简介] todo
+- [安装] todo
 - [样例]: 采样操作系统函数调用 `perf record -g`，获取调用报告 `perf report`
 
 ### pstree
@@ -158,10 +172,6 @@ title: Linux应用性能调优-LTS
 
 - [简介] 内存泄露检测工具，应用最广泛的工具，一个重量级的内存检查器，能够发现开发中绝大多数内存错误使用情况
 - [内存检测王者之剑—valgrind](https://zhuanlan.zhihu.com/p/56538645)
-
-## 网络信息
-
-### tcpdump
 
 - [简介]
 
@@ -190,7 +200,7 @@ title: Linux应用性能调优-LTS
 
 - [简介]: 测试磁盘的 IOPS、吞吐量以及响应时间等核心指标
 
-## 内核信息
+## 内核
 
 ### procfs
 
@@ -219,7 +229,7 @@ title: Linux应用性能调优-LTS
   - /proc/diskstats, 给出了每一块逻辑磁盘设备的一些信息
   - /proc/filesystems, 当前时刻内核支持的文件系统的列表
   - /proc/interrupts, /proc/iomem, /proc/ioports, /proc/irq, 设备的一些与中断、内存访问有  - 关的信息
-  - /proc/kmsg, 用于跟踪读取内核消息 
+  - /proc/kmsg, 用于跟踪读取内核消息
   - /proc/meminfo, 包含内核管理内存的一些汇总信息
   - /proc/modules, 是/proc最重要的文件之一, 包含了当前加载的内核模块列表
   - /proc/mounts, 包含了当前安装设备及安装点的符号链接
@@ -236,4 +246,22 @@ title: Linux应用性能调优-LTS
   - /proc/version, 包含Linux内核版本，发布号（distribution number）, 编译内核的gcc版本，其他  - 相关的版本
   - /proc/{pid}/smaps，读取某个pid进程对应的虚拟内存区间到信息
   - 其他文件依赖于不同的硬件，模块配置与内核改变
-  -  /proc/sys/vm/swappiness，Linux 提供了一个 /proc/sys/vm/swappiness 选项，用来调整使用 Swap 的积极程度。swappiness 的范围是 0-100，数值越大，越积极使用 Swap，也就是更倾向于回收匿名页；数值越小，越消极使用 Swap，也就是更倾向于回收文件页。
+  - /proc/sys/vm/swappiness，Linux 提供了一个 /proc/sys/vm/swappiness 选项，用来调整使用 Swap 的积极程度。swappiness 的范围是 0-100，数值越大，越积极使用 Swap，也就是更倾向于回收匿名页；数值越小，越消极使用 Swap，也就是更倾向于回收文件页。
+
+## 网络
+
+### nslookup
+
+- [简介] 用于分析 DNS 的解析过程
+
+### dig
+
+- [简介] 用于分析 DNS 的解析过程
+
+### ping
+
+- [简介] 用于测试服务器延时
+
+### tcpdump
+
+- todo
