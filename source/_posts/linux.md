@@ -264,4 +264,7 @@ title: Linux应用性能调优-LTS
 
 ### tcpdump
 
-- todo
+- [简介] 用于网络抓包
+- [输出格式] `时间戳 协议 源地址. 源端口 > 目的地址. 目的端口 网络包详细信息`
+![tcpdump-选项](image/006-tcpdump.png)
+![tcpdump-表达式过滤](image/007-tcpdump.png)
