@@ -5,19 +5,23 @@ title: elasticsearch源码学习-LTS
 - 用于个人学习总结elasticsearch
 - 包括基础使用、运行机制、源码解析等
 - 源码基于 6.1 分支: [elasticsearch-6.1分支代码](https://github.com/elastic/elasticsearch/tree/6.1)
+
 ## 目录
 
 - [如何调试](#如何调试)
 - [ES集群启动步骤](#ES集群启动步骤)
 - [ES节点启动](#ES节点启动)
+
 ### 如何调试
+
 - 1. 编译构建elasticsearch工程: `./gradlew assemble`
 - 2. 将工程集成到IDEA: `./gradlew idea`，用IDEA打开elasticsearch工程
-- 3. 执行 `./gradlew :run --debug-jvm`，启动调试模式. 
-- 4. debug启动之后，观察日志：`[elasticsearch] Listening for transport dt_socket at address: 8000 `发现debug端口为`8000`. 
+- 3. 执行 `./gradlew :run --debug-jvm`，启动调试模式.
+- 4. debug启动之后，观察日志：`[elasticsearch] Listening for transport dt_socket at address: 8000`发现debug端口为`8000`.
 - 5. 添加远程JVM调试，主机填`localhost`,端口配置为`8000`,JDK选择 `5-8`，点击确定启动debug
 - ![debug 配置](image/003-debug.png)
-- 6. 可以观察日志，服务已经正常启动 
+- 6. 可以观察日志，服务已经正常启动
+
 ```log
 [elasticsearch] [2023-07-26T16:19:14,233][INFO ][o.e.t.TransportService   ] [node-0] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
 [elasticsearch] [2023-07-26T16:19:17,300][INFO ][o.e.c.s.MasterService    ] [node-0] zen-disco-elected-as-master ([0] nodes joined), reason: new_master {node-0}{48qziOzRTdOSQo0nQhQ_PQ}{udw-kDLxTNCvBvup2R2Nqw}{127.0.0.1}{127.0.0.1:9300}{testattr=test}
@@ -29,7 +33,9 @@ title: elasticsearch源码学习-LTS
 > :distribution:run#start
 > IDLE
 ```
+
 - 7. 在浏览器访问: `http://127.0.0.1:9200/`
+
 ```json
 {
   "name" : "node-0",
@@ -47,13 +53,25 @@ title: elasticsearch源码学习-LTS
   "tagline" : "You Know, for Search"
 }
 ```
+
 ### ES集群启动步骤
-* 1. 选举主节点（过半数为master节点）
-* 2. 选举集群元信息
-* 3. allocation分配数据分片
-* 4. index recovery 索引重启恢复
-* 5. 集群启动
 
-### ES节点启动
+- 1. 选举主节点（过半数为master节点）
+- 2. 选举集群元信息
+- 3. allocation分配数据分片
+- 4. index recovery 索引重启恢复
+- 5. 集群启动
 
-* 1. 
+### ES 数据模型
+
+- 1 数据副本模型基于主从模式（或称主备模式，HDFS和 Cassandra为对等模式），在实现过程中参考了微软的PacificA算法
+- 2 数据副本模型：
+  - ES的数据副本模型基于主备模式
+  - 每个索引都会被拆分为多个分片，并且每个分片都有多个副本(这些副本称为replication group)
+- 3 写入过程：
+  - 请求到达协调节点：（request->coordinator）
+  - 协调节点先验证操作：（coordinator->validation）
+  - 协调节点转发到主分片（coordinator—>routing to-> master node)
+  - 主节点本地更新操作（ master node update）
+  - 主节点下发数据同步给副本节点组（master node->slave nodes）
+  - 一旦所有的副分片成功执行操作并回复主分片，主分片会把 请求执行成功的信息返回给协调节点，协调节点返回给客户端
