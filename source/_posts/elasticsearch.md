@@ -1,10 +1,10 @@
 ---
-title: elasticsearch源码学习-LTS
+title: ElasticSearch源码学习-LTS
 ---
 
-- 用于个人学习总结elasticsearch
+- 用于个人学习总结ElasticSearch
 - 包括基础使用、运行机制、源码解析等
-- 源码基于 6.1 分支: [elasticsearch-6.1分支代码](https://github.com/elastic/elasticsearch/tree/6.1)
+- 源码基于 6.1 分支: [ElasticSearch-6.1分支代码](https://github.com/elastic/elasticsearch/tree/6.1)
 
 ## 目录
 
@@ -83,4 +83,9 @@ title: elasticsearch源码学习-LTS
   - 从副本组中选择一个相关分片的活跃副本
   - 发送分片级的读请求到被选中的副本
   - 合并结果并给客户端返回响应
+
+### ES主分片选举策略（Allocation IDs）
+
+- 安全地分配主分片
+  - 分片决策过程在主节点完成，并记录在集群状态中
   
