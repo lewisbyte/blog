@@ -61,8 +61,6 @@ title: Linux应用性能调优-LTS
 
 ![磁盘问题分析图](image/009.png)
 
-- todo
-
 ## 系统信息
 
 ### top
