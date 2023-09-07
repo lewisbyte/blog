@@ -111,4 +111,11 @@ title: ElasticSearch源码学习-LTS
 
 - 详细流程
 
-  -
+### ES-GET流程
+
+- 基本流程：
+  - 1. 客户端请求node节点（coordinator 协调节点）
+  - 2. node节点使用文档id确定数据分片，将请求转发给任意一个分片副本节点
+  - 3. 副本节点返回对应文档数据，node返回数据给客户端
+- 详细流程
+![GET详细流程](image/010.png)
