@@ -119,3 +119,11 @@ title: ElasticSearch源码学习-LTS
   - 3. 副本节点返回对应文档数据，node返回数据给客户端
 - 详细流程
 ![GET详细流程](image/010.png)
+
+### Search流程
+
+- 索引和搜索
+![索引流程](image/011.png)
+
+- 分布式搜索过程
+
