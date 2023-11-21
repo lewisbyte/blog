@@ -126,4 +126,5 @@ title: ElasticSearch源码学习-LTS
 ![索引流程](image/011.png)
 
 - 分布式搜索过程
+  - 实现类：`org.elasticsearch.rest.action.search.RestSearchAction`
 
