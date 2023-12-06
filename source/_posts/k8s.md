@@ -11,3 +11,4 @@ title: K8S 自学总结
 - batch：离线计算服务
   - CronJob：定时离线任务
   - Job：普通离线任务
+- Ingress：代理不同后端 Service 而设置的负载均衡服务
