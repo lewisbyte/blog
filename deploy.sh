@@ -5,7 +5,7 @@ echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git add -A>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 git add -A;
 echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<git commit>>>>>>>>>>>>>>>>>>>>>>>>>>>'"
 git commit -m 'update';
-echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git pull origin master --rebase>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git pull origin main --rebase>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 git pull origin main --rebase;
 echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git push origin main>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 git push origin main;
