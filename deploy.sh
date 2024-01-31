@@ -6,7 +6,7 @@ git add -A;
 echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<git commit>>>>>>>>>>>>>>>>>>>>>>>>>>>'"
 git commit -m 'update';
 echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git pull origin master --rebase>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-git pull origin master --rebase;
+git pull origin main --rebase;
 echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<git push origin main>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 git push origin main;
 echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<hexo clean>>>>>>>>>>>>>>>>>>>>>>>>>>>'
