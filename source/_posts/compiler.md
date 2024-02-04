@@ -7,6 +7,7 @@ title: 编译原理相关
 ## 目录
 
 - [antlr4的本地配置安装](#antlr4的本地配置安装)
+- [巴科斯范式](#巴科斯范式)
 
 ### antlr4的本地配置安装
 
@@ -46,3 +47,9 @@ ANTLR Parser Generator  Version 4.11.1
  -Xlog               dump lots of logging info to antlr-timestamp.log
  -Xexact-output-dir  all output goes into -o dir regardless of paths/package
 ```
+
+### 巴科斯范式
+
+“巴科斯范式”，简称 BNF。Antlr 和 Yacc 这两个工具都用这种写法。为了简化书写，我有时会在课程中把“::=”简化成一个冒号。你看到的时候，知道是什么意思就可以了。
+
+你有时还会听到一个术语，叫做扩展巴科斯范式 (EBNF)。它跟普通的 BNF 表达式最大的区别，就是里面会用到类似正则表达式的一些写法。比如下面这个规则中运用了 * 号，来表示这个部分可以重复 0 到多次：
