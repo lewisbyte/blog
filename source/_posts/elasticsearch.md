@@ -9,6 +9,7 @@ title: ElasticSearch源码学习-LTS
 ## 目录
 
 - [如何调试](#如何调试)
+- [源码目录介绍](#源码目录介绍)
 - [ES集群启动步骤](#ES集群启动步骤)
 - [ES集群启动步骤](#ES集群启动步骤)
 - [ES数据模型](#ES数据模型)
@@ -57,6 +58,57 @@ title: ElasticSearch源码学习-LTS
   "tagline" : "You Know, for Search"
 }
 ```
+
+### 源码目录介绍
+
+- 1.buildSrc
+  - 包含 Gradle 构建脚本的定制逻辑。Elasticsearch 使用 Gradle 进行构建和管理依赖，这个目录存放了构建过程中所需的自定义插件和配置。
+
+- 2.client
+  - 包含与 Elasticsearch 交互的客户端代码。
+  - client/java-rest: Java REST 客户端，提供与 Elasticsearch REST API 的交互。
+  - client/transport: 旧的 Java Transport 客户端（已被废弃），通过自定义的二进制协议与集群通信。
+
+- 3.distribution
+  - 包含用于打包 Elasticsearch 发行版的代码。
+  - distribution/docker: 用于构建 Elasticsearch Docker 镜像的相关文件。
+  - distribution/archives: 用于创建 zip 和 tar.gz 发行包的配置。
+
+- 4.libs
+  - 包含独立于 Elasticsearch 其他部分的通用库和实用工具。
+  - libs/core: 核心库，包含了一些通用的工具类和基础设施代码。
+  - libs/geo: 处理地理空间数据的库。
+
+- 5.modules
+  - 包含 Elasticsearch 的核心模块，这些模块是内置的功能插件。
+  - modules/analysis-common: 常见的文本分析器模块。
+  - modules/lang-painless: Painless 脚本语言模块。
+  - modules/reindex: 支持重新索引操作的模块。
+
+- 6.plugins
+  - 包含官方提供的 Elasticsearch 插件。
+  - plugins/analysis-phonetic: 语音分析插件。
+  - plugins/mapper-annotated-text: 注释文本映射插件。
+  - plugins/repository-s3: S3 存储库插件，用于将快照存储在 AWS S3 上。
+
+- 7.server
+  - 核心服务器代码，包含了 Elasticsearch 的大部分功能逻辑。
+  - server/src/main: 主源码目录，包含核心功能实现。
+  - java/org/elasticsearch/action: 包含所有的操作（actions），如索引、搜索等操作的实现。
+  - java/org/elasticsearch/cluster: 集群管理相关的代码。
+  - java/org/elasticsearch/index: 索引管理和操作相关的代码。
+  - java/org/elasticsearch/node: 节点相关的代码，定义了 Elasticsearch 节点的行为。
+
+- 8.test
+  - 包含测试代码和测试框架。
+  - test/framework: 测试框架代码，提供了一些基础的测试工具和配置。
+  - test/fixtures: 一些测试夹具，用于集成测试。
+
+- 9.x-pack
+  - 包含 X-Pack 组件，提供了额外的功能，如安全、监控、机器学习等。
+  - x-pack/plugin: X-Pack 插件的具体实现。
+  - x-pack/qa: X-Pack 的质量保证（QA）测试代码。
+  - x-pack/spec: 规范和文档。
 
 ### ES集群启动步骤
 
@@ -127,4 +179,3 @@ title: ElasticSearch源码学习-LTS
 
 - 分布式搜索过程
   - 实现类：`org.elasticsearch.rest.action.search.RestSearchAction`
-
