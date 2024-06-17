@@ -105,4 +105,7 @@ title: es索引数据写入异常问题排查
 ![RestUpdateSettingsAction调试栈信息](image/15.png)
 - 这里调用 `org.elasticsearch.client.IndicesAdminClient#updateSettings` 异步更新索引设置
 
+- es通过网络通讯，调用master节点，调用网络方法`org.elasticsearch.cluster.metadata.MetaDataUpdateSettingsService#updateSettings`执行索引配置更新，索引的更新逻辑`clusterService.submitStateUpdateTask`在方法中调用。
+![通过异步任务：clusterService.submitStateUpdateTask，更新配置](image/16.png)
+
 #### 场景2. 自动触发为只读索引
