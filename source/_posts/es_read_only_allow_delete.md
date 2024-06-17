@@ -43,4 +43,66 @@ title: es索引数据写入异常问题排查
 - 2. 再扩展2个ES数据节点，扩展整个es集群内存，降低内存压力，避免触发自动保护机制
 - 3. 手动修改历史索引的_settings，将 index.blocks.read_only_allow_delete 改成 false，保证索引的可用性。
 
-### 源码解析
+### 源码调试解析过程
+
+#### 场景1. 手动设置为只读索引
+
+- 1.添加样例测试索引： `http://localhost:9200/sample_index/_doc/1`
+
+```json
+{
+"foo": "bar"
+}
+```
+
+- 2.更新所有索引的属性为只读索引：`http://localhost:9200/_all/_settings`
+
+```json
+{"index.blocks.read_only_allow_delete": true}
+```
+
+- 3.查看样例测试索引：`http://localhost:9200/sample_index?pretty`
+
+```json
+{
+  "sample_index" : {
+    "aliases" : { },
+    "mappings" : {
+      "_doc" : {
+        "properties" : {
+          "foo" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "number_of_shards" : "5",
+        "blocks" : {
+          "read_only_allow_delete" : "true"
+        },
+        "provided_name" : "sample_index",
+        "creation_date" : "1718608529424",
+        "number_of_replicas" : "1",
+        "uuid" : "v6koutd3Sz2A0YxX985YLA",
+        "version" : {
+          "created" : "6082499"
+        }
+      }
+    }
+  }
+}
+```
+
+- 调试rest请求入口：`org.elasticsearch.rest.action.admin.indices.RestUpdateSettingsAction#prepareRequest`
+![RestUpdateSettingsAction调试栈信息](image/15.png)
+- 这里调用 `org.elasticsearch.client.IndicesAdminClient#updateSettings` 异步更新索引设置
+
+#### 场景2. 自动触发为只读索引
