@@ -108,4 +108,8 @@ title: es索引数据写入异常问题排查
 - es通过网络通讯，调用master节点，调用网络方法`org.elasticsearch.cluster.metadata.MetaDataUpdateSettingsService#updateSettings`执行索引配置更新，索引的更新逻辑`clusterService.submitStateUpdateTask`在方法中调用。
 ![通过异步任务：clusterService.submitStateUpdateTask，更新配置](image/16.png)
 
+- 调用方法`org.elasticsearch.common.settings.AbstractScopedSettings#updateDynamicSettings`更新对应索引配置
+
 #### 场景2. 自动触发为只读索引
+
+- 根据网络资料提示，在JVM的内存达到压力阈值或者磁盘到达阈值时，会进行自动将索引状态更新为只读索引
