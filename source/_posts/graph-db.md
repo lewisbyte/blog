@@ -13,31 +13,27 @@ title: 图数据库相关
 - 1.通讯协议：
   - Q:  为什么图库使用 neo4j 的 bolt 链接协议，出现了无法找到主节点导致无法写入或者读取的问题？
   - A：neo4j支持3种通讯协议：
-    - bolt+routing（适用于集群，目前图平台不支持此协议）
+    - bolt+routing（适用于集群）
     - bolt（适用于单机）
     - neo4j（适用于集群）
     - bolt 适用于单节点的图数据库。集群模式下的图库需要支持路由的neo4j协议进行通信，从而将请求转发到对应的数据节点上。
     - 参考：<https://neo4j.com/docs/driver-manual/1.7/client-applications/#driver-connection-uris>
 
-- 2.数据接入
-  - Q:  为什么出现hive数据无法接入图库？datax是否支持mysql 导入neo4j ? 什么类型的数据接入可以导入到neo4j？
-  - A: 不支持；不支持；目前图平台只支持文件模式导入数据到图平台
-
-- 3.数据库命名规范：
+- 2.数据库命名规范：
   - Q:  为什么出现了图数据库创建失败的问题？
   - A：neo4j 有自己的数据库规范，这里需要按照neo4j的规范进行创建，所以对应的图实例也要按照规范进行校验
 
-- 4.边关系查询缓慢：
+- 3.边关系查询缓慢：
   - Q: 为什么图析界面，点击查询边关系出现超时？
   - A： neo4j 4.1.x版本的图库，不支持关系边表索引建立。如图所示通过主键查询的检索模式是 AllNodesScan 全表扫描（性能调优参考：<https://blog.csdn.net/qq_37503890/article/details/102073193），2亿的数据量查询的时间耗时约为10s左右。>
     - 解决方案：将关系边数据导入到es，通过es查询，不通过图库查询。
 
-- 5.neo4j 的数据库链接泄露，句柄数量增长非常快
+- 4.neo4j 的数据库链接泄露，句柄数量增长非常快
   - A：数据库链接没有及时释放导致的数据库链接泄露，及时释放neo4j的连接即可
     - 微服务句柄数量超过限制问题汇总
 
-- 7.neo4j 在使用ETL导入时，出现死锁现象：
-  - Q: 在使招行AI实验室项目中，图平台[3.1.2.69] 用spark 集群对neo4j批量导入关系边数据的时候，总是会出现报错：ForsetiClient can't acquire ExclusiveLock（参考：<https://github.com/neo4j/neo4j/issues/6248）>
+- 5.neo4j 在使用ETL导入时，出现死锁现象：
+  - Q: 在使用spark 集群对neo4j批量导入关系边数据的时候，总是会出现报错：ForsetiClient can't acquire ExclusiveLock（参考：<https://github.com/neo4j/neo4j/issues/6248）>
 
   - A:
     - 在使用集群导数，一般是多个作业实例执行导入任务，这里就会出现并发写入的场景。neo4j的边关系写入的操作时，数据库本身会给每一个写入操作的事务分配一把排它锁（exclusiveLock），多并发写入就会出现事务之间锁的争夺情况。在实际的生产环境中观察到，最多有130个事务卡在获取锁，最后导致事务超时，整体数据导入任务失败。
@@ -47,15 +43,15 @@ title: 图数据库相关
 调整spark配置：[ spark.dynamicAllocation.enabled    false ] ，关闭 动态资源分配功能
 调整 etl的spark 任务参数，限制最大：1个instances，1个cores，避免多进程并发写入导致的死锁问题
 
-- 8.出现报错：Could not perform discovery. No routing servers available
+- 6.出现报错：Could not perform discovery. No routing servers available
   - A：neo4j 的服务宕机，需要管理员维护
 
-- 9.使用图平台文件导入大数据量到neo4j宕机
+- 7.使用文件导入大数据量到neo4j宕机
   - A: graph系统在使用文件导入120w条数据，具体表现为会出现jvm内存耗尽，机器不再接受写入请求
   - Q: DBA解释为cypher语句太长，堆积在内存中无法释放导致的内存耗尽，需要优化语句，建议使用unwind优化cypher语句
   - neo4j批量入数优化分析及实现
 
-- 10. 数据导入neo4j 出现 heap 堆内存溢出，表现为老年代（old gen）持续增长，不会下降
+- 8. 数据导入neo4j 出现 heap 堆内存溢出，表现为老年代（old gen）持续增长，不会下降
 
 现象如下图:
 
