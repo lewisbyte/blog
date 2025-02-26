@@ -112,4 +112,4 @@ footer:
   beian:
     enable: true
     icp_text: '皖ICP备2025074935号'
-    police_text: 'https://beian.miit.gov.cn/'
+    police_code: 'https://beian.miit.gov.cn/'
