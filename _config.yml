@@ -105,3 +105,8 @@ deploy:
   type: git
   repository: git@github.com:lewisbyte/lewisbyte.github.io.git
   branch: main
+
+footer:
+  content: '<a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2025074935号</a>'
+  statistics: 
+    enable: false
