@@ -118,3 +118,9 @@ footer:
     police_text: 皖ICP备2025074935号-1
     police_code: https://beian.miit.gov.cn/
     police_icon: /img/police_beian.png
+post:
+  comments:
+    enable: true
+    type: disqus
+disqus:
+  shortname: fluid
