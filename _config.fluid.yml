@@ -124,3 +124,7 @@ post:
     type: disqus
 disqus:
   shortname: fluid
+index:
+  slogan:
+    enable: true
+    text: 保持好奇心
