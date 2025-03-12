@@ -1,4 +1,4 @@
-
+force_https: true
 footer:
   statistics:
     enable: true
@@ -13,7 +13,7 @@ footer:
     police_icon: /img/police_beian.png
 post:
   comments:
-    enable: true
+    enable: false
     type: disqus
 disqus:
   shortname: fluid
