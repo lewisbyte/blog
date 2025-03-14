@@ -21,3 +21,4 @@ index:
   slogan:
     enable: true
     text: 保持好奇心
+custom_html: '<script src="https://utteranc.es/client.js" repo="lewisbyte/lewisbyte.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>'
