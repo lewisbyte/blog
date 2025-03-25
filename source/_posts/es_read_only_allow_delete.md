@@ -1,5 +1,9 @@
 ---
 title: es索引数据写入异常问题排查
+categories: 
+- ElasticSearch
+tags:
+- ElasticSearch
 ---
 
 ## 目录

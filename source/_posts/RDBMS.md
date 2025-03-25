@@ -1,5 +1,9 @@
 ---
 title: 关系型数据库相关
+categories: 
+- Linux
+tags:
+- Linux
 ---
 
 - 记录关系型数据库相关的疑难杂症

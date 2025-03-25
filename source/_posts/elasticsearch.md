@@ -1,5 +1,9 @@
 ---
 title: ElasticSearch源码学习-LTS
+categories: 
+- ElasticSearch
+tags:
+- ElasticSearch
 ---
 
 - 用于个人学习总结ElasticSearch

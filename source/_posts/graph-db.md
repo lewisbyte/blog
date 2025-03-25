@@ -1,5 +1,9 @@
 ---
 title: 图数据库相关
+categories: 
+- graph db
+tags:
+- graph db
 ---
 
 - 记录图数据库相关的疑难杂症

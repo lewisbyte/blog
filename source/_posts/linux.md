@@ -1,5 +1,9 @@
 ---
 title: Linux应用性能调优-LTS
+categories: 
+- Linux
+tags:
+- Linux
 ---
 
 - 总结、收集 Linux 实用命令、系统应用调优相关的技巧
