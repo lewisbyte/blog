@@ -3,7 +3,7 @@ title: 关系型数据库相关
 categories: 
 - 技术开发
 tags:
-- Linux
+- MySQL
 ---
 
 - 记录关系型数据库相关的疑难杂症

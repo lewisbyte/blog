@@ -3,7 +3,7 @@ title: 图数据库相关
 categories: 
 - 技术开发
 tags:
-- graph db
+- neo4j
 ---
 
 - 记录图数据库相关的疑难杂症
