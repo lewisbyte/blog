@@ -1,7 +1,7 @@
 ---
 title: Linux应用性能调优-LTS
 categories: 
-- Linux
+- 技术开发
 tags:
 - Linux
 ---

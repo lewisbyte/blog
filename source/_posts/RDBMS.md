@@ -1,7 +1,7 @@
 ---
 title: 关系型数据库相关
 categories: 
-- Linux
+- 技术开发
 tags:
 - Linux
 ---

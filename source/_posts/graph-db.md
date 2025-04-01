@@ -1,7 +1,7 @@
 ---
 title: 图数据库相关
 categories: 
-- graph db
+- 技术开发
 tags:
 - graph db
 ---
