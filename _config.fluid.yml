@@ -1,0 +1,26 @@
+force_https: true
+footer:
+  statistics:
+    enable: true
+    source: "busuanzi"  # 可选 leancloud | busuanzi  根据自己需求选择
+    pv_format: "总访问量 {} 次"  # 显示的文本，{}是数字的占位符（必须包含)，下同
+    uv_format: "总访客数 {} 人"
+navbar:
+  blog_title: 思维碎片
+## slogan 配置
+index:
+  slogan:
+    enable: true
+    text: 保持好奇心
+favicon: /image/icon.png
+## 评论配置
+custom_html: '<script src="https://utteranc.es/client.js" repo="lewisbyte/lewisbyte.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>'
+
+## 标签页配置
+tag:
+  tagcloud:
+    min_font: 15
+    max_font: 30
+    unit: px  # 字号单位
+    start_color: "#BBBBEE"
+    end_color: "#337ab7"

@@ -15,4 +15,5 @@ echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<hexo generate>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 hexo generate;
 echo '<<<<<<<<<<<<<<<<<<<<<<<<<<<hexo deploy>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 npm install hexo-generator-sitemap --save
+npm install hexo-generator-baidu-sitemap --save
 hexo deploy;
