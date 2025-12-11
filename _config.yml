@@ -107,8 +107,6 @@ deploy:
   branch: main
 sitemap:
   path: sitemap.xml
-baidusitemap:
-  path: baidusitemap.xml
 
 # Extensions
 plugins:
