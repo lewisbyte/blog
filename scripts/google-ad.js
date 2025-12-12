@@ -1,3 +1,3 @@
 hexo.extend.filter.register('theme_inject', function(injects) {
-	injects.head.raw('adsense', '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3420592895669054" crossorigin="anonymous"></script>');
+	injects.head.raw('adsense', '<script defer src="https://umami-tawny-ten.vercel.app/script.js" data-website-id="2d67bc92-a495-40e4-8494-c7953d135107"></script>');
 });
